@@ -18,7 +18,7 @@ function getBooksBorrowedCount(books) {
 }
 
 function mostPopularGenre(books) {
-  let arr = books.sort((bookA, bookB) =>
+  const arr = books.sort((bookA, bookB) =>
     bookA.borrows.length > bookB.borrows.length ? -1 : 1
   );
   return arr;
@@ -42,15 +42,15 @@ function getMostCommonGenres(books) {
 }
 
 function sortMostPopularToLeast(books) {
-  let arr = books.sort((bookA, bookB) =>
+  const arr = books.sort((bookA, bookB) =>
     bookA.borrows.length > bookB.borrows.length ? -1 : 1
   );
   return arr;
 }
 
 function getMostPopularBooks(books) {
-  let popularOrganized = sortMostPopularToLeast(books);
-  let top5books = [];
+  const popularOrganized = sortMostPopularToLeast(books);
+  const top5books = [];
   for (let i = 0; i < 5; i++) {
     top5books.push(
       (popularOrganized[i] = {
@@ -63,7 +63,7 @@ function getMostPopularBooks(books) {
 }
 
 function getMostPopularAuthors(books, authors) {
-  let authorArray = [];
+  const authorArray = [];
   authors.forEach((author) => {
     let theAuthor = {
       name: `${author.name.first} ${author.name.last}`,

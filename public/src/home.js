@@ -63,7 +63,7 @@ function getMostPopularBooks(books) {
 }
 
 function getMostPopularAuthors(books, authors) {
-  let result = [];
+  let authorArray = [];
   authors.forEach((author) => {
     let theAuthor = {
       name: `${author.name.first} ${author.name.last}`,
@@ -74,10 +74,10 @@ function getMostPopularAuthors(books, authors) {
         theAuthor.count += book.borrows.length;
       }
     });
-    result.push(theAuthor);
+    authorArray.push(theAuthor);
   });
-  sortByCount(result);
-  return result.slice(0, 5);
+  sortByCount(authorArray);
+  return authorArray.slice(0, 5);
 }
 
 module.exports = {

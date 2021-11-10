@@ -11,13 +11,13 @@ function getTotalAccountsCount(accounts) {
 }
 
 function getBooksBorrowedCount(books) {
-  return books.reduce((acc, book) => {
+  return books.reduce((booksBorrowed, book) => {
     for (borrow of book.borrows) {
       if (borrow.returned === false) {
-        acc++;
+        booksBorrowed++;
       }
     }
-    return acc;
+    return booksBorrowed;
   }, 0);
 }
 

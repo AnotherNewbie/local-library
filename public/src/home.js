@@ -1,7 +1,3 @@
-function sortByCount(array) {
-  array.sort((elemA, elemB) => elemB.count - elemA.count);
-}
-
 function getTotalBooksCount(books) {
   return books.length;
 }
@@ -26,6 +22,10 @@ function mostPopularGenre(books) {
     bookA.borrows.length > bookB.borrows.length ? -1 : 1
   );
   return arr;
+}
+
+function sortByCount(array) {
+  array.sort((elemA, elemB) => elemB.count - elemA.count);
 }
 
 function getMostCommonGenres(books) {

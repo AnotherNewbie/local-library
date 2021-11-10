@@ -1,3 +1,7 @@
+function sortByCount(array) {
+  array.sort((elemA, elemB) => elemB.count - elemA.count);
+}
+
 function getTotalBooksCount(books) {
   return books.length;
 }
@@ -8,9 +12,10 @@ function getTotalAccountsCount(accounts) {
 
 function getBooksBorrowedCount(books) {
   return books.reduce((acc, book) => {
-    if (!book.borrows[0].returned) {
-      // checking 0th element because that is the only one that has shown false
-      acc++;
+    for (borrow of book.borrows) {
+      if (borrow.returned === false) {
+        acc++;
+      }
     }
     return acc;
   }, 0);
@@ -23,10 +28,6 @@ function mostPopularGenre(books) {
   return arr;
 }
 
-function sortByCount(array){
-  array.sort((elemA, elemB) => elemB.count - elemA.count);
-}
-
 function getMostCommonGenres(books) {
   ranks = books.reduce((results, book) => {
     if (!results.find((result) => result.name === book.genre)) {
@@ -35,9 +36,9 @@ function getMostCommonGenres(books) {
       results.find((result) => result.name === book.genre).count++;
     }
     return results;
-  }, []);  
+  }, []);
   sortByCount(ranks);
-  return ranks.slice(0, 5); 
+  return ranks.slice(0, 5);
 }
 
 function sortMostPopularToLeast(books) {
@@ -50,7 +51,6 @@ function sortMostPopularToLeast(books) {
 function getMostPopularBooks(books) {
   let popularOrganized = sortMostPopularToLeast(books);
   let top5books = [];
-
   for (let i = 0; i < 5; i++) {
     top5books.push(
       (popularOrganized[i] = {
@@ -77,7 +77,7 @@ function getMostPopularAuthors(books, authors) {
     result.push(theAuthor);
   });
   sortByCount(result);
-  return result.slice(0,5);
+  return result.slice(0, 5);
 }
 
 module.exports = {

@@ -24,7 +24,7 @@ function mostPopularGenre(books) {
 }
 
 function sortByCount(array){
-  array.sort((a, b) => b.count - a.count);
+  array.sort((elemA, elemB) => elemB.count - elemA.count);
 }
 
 function getMostCommonGenres(books) {
@@ -76,7 +76,8 @@ function getMostPopularAuthors(books, authors) {
     });
     result.push(theAuthor);
   });
-  return result.sort((bookA, bookB) => bookB.count - bookA.count).slice(0, 5);
+  sortByCount(result);
+  return result.slice(0,5);
 }
 
 module.exports = {

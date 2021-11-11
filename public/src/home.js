@@ -41,25 +41,12 @@ function getMostCommonGenres(books) {
   return ranks.slice(0, 5);
 }
 
-function sortMostPopularToLeast(books) {
-  const arr = books.sort((bookA, bookB) =>
-    bookA.borrows.length > bookB.borrows.length ? -1 : 1
-  );
-  return arr;
-}
-
 function getMostPopularBooks(books) {
-  const popularOrganized = sortMostPopularToLeast(books);
-  const top5books = [];
-  for (let i = 0; i < 5; i++) {
-    top5books.push(
-      (popularOrganized[i] = {
-        name: popularOrganized[i].title,
-        count: popularOrganized[i].borrows.length,
-      })
-    );
-  }
-  return top5books;
+  const borrows = books.map((book) => ({
+    name: book.title,
+    count: book.borrows.length,
+  }));
+  return borrows.sort((bookA, bookB) => bookB.count - bookA.count).slice(0, 5);
 }
 
 function getMostPopularAuthors(books, authors) {
